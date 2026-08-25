@@ -5,3 +5,6 @@ desktop.ini
 
 # scratch copies used only for screenshots
 _*.html
+
+# tooling cache
+.impeccable/
