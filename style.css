@@ -962,8 +962,8 @@ html.js .fu:nth-child(6) { transition-delay: .5s; }
   inset: 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;                 /* the ground shows through as a seam */
-  background: var(--dark);
+  /* No gap: the panels butt together. A seam here reads as a border drawn
+     across the photographs rather than as three views of one shop. */
 }
 .hs-panel { overflow: hidden; }
 .hs-panel img { width: 100%; height: 100%; object-fit: cover; display: block; }
