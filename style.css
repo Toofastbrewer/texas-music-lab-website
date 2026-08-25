@@ -1950,3 +1950,64 @@ p, blockquote {
   .mega-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
 }
 @media (max-width: 900px)  { .mega { display: none; } }   /* drawer takes over */
+
+/* ══════════════════════════════════════════════════════════════
+   SHOP STRIP — the reference clip's idle float, applied to a row
+   of the shop's own photographs rather than a single object.
+   Reuses @keyframes guitarFloat: the motion was measured off that
+   clip (2.40s period, horizontal and vertical exactly antiphase so
+   the path is a straight diagonal, scale in phase with height so
+   each card is largest at the top of its drift).
+   ══════════════════════════════════════════════════════════════ */
+.float-sec { padding-top: 0; }
+.fs-kicker {
+  font-family: var(--font);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange-ink);
+  margin: 0 0 26px;
+}
+.float-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+.fs-item {
+  margin: 0;
+  border-radius: var(--r);
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(20, 19, 32, .16);
+  will-change: transform;
+  /* Each card runs the same loop from a different point, so the row
+     drifts rather than pulsing in unison - one shared phase would read
+     as the whole strip breathing. */
+  --fx: 5px; --fy: 6px; --fr: .4deg; --fs: .006;
+  animation: guitarFloat 1.2s cubic-bezier(.45, 0, .55, 1) infinite alternate;
+}
+.fs-item:nth-child(1) { animation-delay: -0.05s; }
+.fs-item:nth-child(2) { animation-delay: -0.48s; margin-top: 26px; }
+.fs-item:nth-child(3) { animation-delay: -0.92s; }
+.fs-item:nth-child(4) { animation-delay: -1.36s; margin-top: 26px; }
+.fs-item:nth-child(5) { animation-delay: -1.80s; }
+.fs-item img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .float-strip { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .fs-item:nth-child(n + 4) { display: none; }   /* three reads; five is a stripe */
+  .fs-item { --fx: 3px; --fy: 4px; }
+}
+@media (max-width: 560px) {
+  .float-strip { grid-template-columns: repeat(2, 1fr); }
+  .fs-item:nth-child(n + 3) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fs-item { animation: none; transform: none; }
+}
