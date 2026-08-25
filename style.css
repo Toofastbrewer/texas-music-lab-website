@@ -1706,6 +1706,7 @@ ol.timeline { list-style: none; padding: 0; margin: 0 auto; }
   /* Never hang off the edge here - it would scroll the page. Sized so the
      badge in the bottom-left corner does not sit on top of the body. */
   .g3d-float { right: 0; top: 2%; height: 90%; }
+  .g3d-float img { --fx: 3.5px; --fy: 4px; }
   .g3d-back  { width: 44%; height: 36%; }
 }
 
@@ -1715,6 +1716,7 @@ ol.timeline { list-style: none; padding: 0; margin: 0 auto; }
   .g3d-stage { transform: none !important; transition: none; }
   .g3d-card, .g3d-float { transform: none !important; }
   .g3d-float { right: 0; top: 2%; height: 90%; }
+  .g3d-float img { --fx: 3.5px; --fy: 4px; }
   .g3d-back  { left: 0; top: 0; }
 }
 
@@ -1740,4 +1742,34 @@ ol.timeline { list-style: none; padding: 0; margin: 0 auto; }
      mask-image: Chrome draws mask-image + drop-shadow on one element as a
      shadow of the element BOX rather than of the alpha, which paints a grey
      rectangle behind the cut-out. One mechanism avoids the interaction. */
+
+  /* Idle float, measured off the reference clip rather than guessed: a 2.40s
+     period, horizontal and vertical exactly 180 degrees apart (a straight
+     diagonal, not an orbit), and scale in phase with height - so it is
+     largest at the top of the drift, reading as a lean toward the viewer.
+     `alternate` halves the duration, since one there-and-back is two runs.
+
+     This lives on the IMG, not on .g3d-float: the wrapper's transform is
+     written by the pointer-tilt script every frame and an inline style would
+     win over the animation. On the child they compose instead of fighting. */
+  --fx: 6px;      /* 3.69px in the clip, scaled by our render width */
+  --fy: 7px;      /* 4.46px */
+  --fr: .45deg;   /* 0.43deg - angles do not scale */
+  --fs: .0075;    /* 0.75% linear */
+  animation: guitarFloat 1.2s cubic-bezier(.45, 0, .55, 1) infinite alternate;
+}
+
+@keyframes guitarFloat {
+  from {
+    transform: translate3d(calc(var(--fx) * -1), var(--fy), 0)
+               rotate(calc(var(--fr) * -1)) scale(calc(1 - var(--fs)));
+  }
+  to {
+    transform: translate3d(var(--fx), calc(var(--fy) * -1), 0)
+               rotate(var(--fr)) scale(calc(1 + var(--fs)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .g3d-float img { animation: none; transform: none; }
 }
