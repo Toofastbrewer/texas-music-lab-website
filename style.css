@@ -269,41 +269,6 @@ h4 { font-size: 1rem; font-weight: 700; }
 .chev { font-size: .6rem; transition: transform .2s; opacity: .7; }
 .nav-item:hover .chev { transform: rotate(180deg); }
 
-/* Dropdown */
-.dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 210px;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  box-shadow: var(--sh-xl);
-  padding: 6px 8px 8px;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-8px);
-  transition: opacity .2s var(--ease-out), transform .2s var(--ease-out);
-  z-index: 200;
-}
-.nav-item:hover .dropdown {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-.dropdown a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  font-size: .87rem;
-  font-weight: 600;
-  color: var(--body);
-  border-radius: 8px;
-  transition: color .15s var(--ease-out), background-color .15s var(--ease-out);
-}
-.dropdown a:hover { background: var(--orange-lt); color: var(--orange); }
-.d-icon { font-size: 1rem; flex-shrink: 0; }
 
 .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 
@@ -1971,5 +1936,17 @@ p, blockquote {
 }
 .mega-col a:hover { color: var(--orange); padding-left: 4px; }
 
-@media (max-width: 1080px) { .mega-grid { grid-template-columns: repeat(3, 1fr); } }
+/* Three columns would stretch thin across the full 1160px wrap, so this
+   variant keeps them at a readable width and packs them to the left rather
+   than spreading a short menu across the whole bar. */
+.mega-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 250px));
+  justify-content: start;
+  gap: 44px;
+}
+
+@media (max-width: 1080px) {
+  .mega-grid { grid-template-columns: repeat(3, 1fr); }
+  .mega-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+}
 @media (max-width: 900px)  { .mega { display: none; } }   /* drawer takes over */
