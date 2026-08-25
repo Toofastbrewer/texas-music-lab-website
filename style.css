@@ -42,6 +42,10 @@ ul { list-style: none; }
      unusual enough that guessing would not have landed on it. */
   --font:       'Karla', system-ui, sans-serif;
   --font-body:  'Old Standard TT', Georgia, serif;
+  /* The wordmark alone. Taken from the shop's own street sign, which is a
+     sans - the capital I there is a bare stem with no serifs, so what reads
+     as a serif in a small crop is only photographic blur. */
+  --font-logo:  'Lato', system-ui, sans-serif;
   --max:        1160px;
   --nav-h:      78px;
   --r:          12px;
@@ -222,12 +226,18 @@ h4 { font-size: 1rem; font-weight: 700; }
 .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
 .ft-logo .logo-mark { height: 54px; }
 .logo-name {
-  font-weight: 800;
+  font-family: var(--font-logo);
+  /* Lato has no 800 - it goes 700 then 900 - so asking for 800 would have
+     let the browser synthesise a weight rather than load a drawn one. */
+  font-weight: 700;
   font-size: 1.22rem;
   color: var(--text);
-  letter-spacing: -.3px;
+  /* The sign is set open, not tight; the previous -.3px pulled the opposite
+     way to the thing this is meant to echo. */
+  letter-spacing: .3px;
 }
 .logo-sub {
+  font-family: var(--font-logo);   /* the lockup reads as one unit */
   font-size: .6rem;
   font-weight: 700;
   letter-spacing: 2.5px;
