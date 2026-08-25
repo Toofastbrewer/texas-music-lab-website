@@ -1952,62 +1952,81 @@ p, blockquote {
 @media (max-width: 900px)  { .mega { display: none; } }   /* drawer takes over */
 
 /* ══════════════════════════════════════════════════════════════
-   SHOP STRIP — the reference clip's idle float, applied to a row
-   of the shop's own photographs rather than a single object.
-   Reuses @keyframes guitarFloat: the motion was measured off that
-   clip (2.40s period, horizontal and vertical exactly antiphase so
-   the path is a straight diagonal, scale in phase with height so
-   each card is largest at the top of its drift).
+   SHOP CLUSTER — the photographs pile up, and push apart from the
+   pointer. JS writes .fs-item's transform, so the idle float lives
+   on .fs-inner; sharing one element would let the inline style
+   overwrite the animation.
    ══════════════════════════════════════════════════════════════ */
 .float-sec { padding-top: 0; }
 .fs-kicker {
   font-family: var(--font);
-  font-size: .72rem;
-  font-weight: 800;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
+  font-size: .72rem; font-weight: 800;
+  letter-spacing: 2.5px; text-transform: uppercase;
   color: var(--orange-ink);
-  margin: 0 0 26px;
+  margin: 0 0 18px;
 }
 .float-strip {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  align-items: center;
+  position: relative;
+  height: 350px;
+  touch-action: pan-y;      /* the cards must never eat a vertical swipe */
 }
 .fs-item {
-  margin: 0;
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 210px;
+  margin: -131px 0 0 -105px;
   border-radius: var(--r);
   overflow: hidden;
-  box-shadow: 0 14px 34px rgba(20, 19, 32, .16);
+  box-shadow: 0 16px 38px rgba(20, 19, 32, .22);
   will-change: transform;
-  /* Each card runs the same loop from a different point, so the row
-     drifts rather than pulsing in unison - one shared phase would read
-     as the whole strip breathing. */
-  --fx: 5px; --fy: 6px; --fr: .4deg; --fs: .006;
+  /* The base fan is duplicated here so the pile still forms without JS -
+     CSS cannot read the data-x/y/r attributes the script uses. */
+  transition: box-shadow .25s var(--ease-out);
+}
+.fs-item:nth-child(1) { transform: translate(-168px,  16px) rotate(-11deg); z-index: 1; }
+.fs-item:nth-child(2) { transform: translate( -84px, -12px) rotate( -5deg); z-index: 2; }
+.fs-item:nth-child(3) { transform: translate(   4px,   4px) rotate(  2deg); z-index: 3; }
+.fs-item:nth-child(4) { transform: translate(  92px, -14px) rotate(  7deg); z-index: 2; }
+.fs-item:nth-child(5) { transform: translate( 176px,  18px) rotate( 12deg); z-index: 1; }
+
+.fs-inner {
+  --fx: 4px; --fy: 5px; --fr: .35deg; --fs: .005;
   animation: guitarFloat 1.2s cubic-bezier(.45, 0, .55, 1) infinite alternate;
 }
-.fs-item:nth-child(1) { animation-delay: -0.05s; }
-.fs-item:nth-child(2) { animation-delay: -0.48s; margin-top: 26px; }
-.fs-item:nth-child(3) { animation-delay: -0.92s; }
-.fs-item:nth-child(4) { animation-delay: -1.36s; margin-top: 26px; }
-.fs-item:nth-child(5) { animation-delay: -1.80s; }
-.fs-item img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  display: block;
+.fs-inner:nth-of-type(1) { animation-delay: -0.05s; }
+.fs-item:nth-child(2) .fs-inner { animation-delay: -0.48s; }
+.fs-item:nth-child(3) .fs-inner { animation-delay: -0.92s; }
+.fs-item:nth-child(4) .fs-inner { animation-delay: -1.36s; }
+.fs-item:nth-child(5) .fs-inner { animation-delay: -1.80s; }
+
+.fs-item img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
+.fs-hint {
+  font-family: var(--font);
+  font-size: .76rem; letter-spacing: .6px;
+  color: var(--muted);
+  text-align: center;
+  margin: 18px 0 0;
 }
 
 @media (max-width: 900px) {
-  .float-strip { grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .fs-item:nth-child(n + 4) { display: none; }   /* three reads; five is a stripe */
-  .fs-item { --fx: 3px; --fy: 4px; }
+  .float-strip { height: 300px; }
+  .fs-item { width: 168px; margin: -105px 0 0 -84px; }
+  .fs-item:nth-child(1) { transform: translate(-132px,  14px) rotate(-11deg); }
+  .fs-item:nth-child(2) { transform: translate( -66px, -10px) rotate( -5deg); }
+  .fs-item:nth-child(3) { transform: translate(   3px,   3px) rotate(  2deg); }
+  .fs-item:nth-child(4) { transform: translate(  72px, -12px) rotate(  7deg); }
+  .fs-item:nth-child(5) { transform: translate( 138px,  15px) rotate( 12deg); }
+  .fs-hint { display: none; }        /* no cursor to invite */
 }
 @media (max-width: 560px) {
-  .float-strip { grid-template-columns: repeat(2, 1fr); }
-  .fs-item:nth-child(n + 3) { display: none; }
+  .float-strip { height: 250px; }
+  .fs-item { width: 128px; margin: -80px 0 0 -64px; }
+  .fs-item:nth-child(1) { transform: translate(-100px, 11px) rotate(-11deg); }
+  .fs-item:nth-child(2) { transform: translate( -50px, -8px) rotate( -5deg); }
+  .fs-item:nth-child(3) { transform: translate(   2px,  2px) rotate(  2deg); }
+  .fs-item:nth-child(4) { transform: translate(  54px, -9px) rotate(  7deg); }
+  .fs-item:nth-child(5) { transform: translate( 104px, 12px) rotate( 12deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .fs-item { animation: none; transform: none; }
+  .fs-inner { animation: none; transform: none; }
 }

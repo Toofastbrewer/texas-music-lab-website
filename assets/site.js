@@ -192,3 +192,84 @@
 
   paint();
 })();
+
+/* ══════════════════════════════════════════════════════════════
+   SHOP CLUSTER — the photographs pile up, and shove apart from the
+   pointer. The transform is written here on .fs-item; the idle float
+   is a CSS animation on .fs-inner, so the two compose instead of the
+   inline style silently killing the keyframes.
+   ══════════════════════════════════════════════════════════════ */
+(function () {
+  "use strict";
+  var box = document.getElementById("shopCluster");
+  if (!box) return;
+  /* No pointer to react to, and vestibular motion is the thing being asked
+     about - the CSS fan already renders the pile correctly in both cases. */
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  var num = function (v) { var n = parseFloat(v); return isFinite(n) ? n : 0; };
+  var cards = [].slice.call(box.querySelectorAll(".fs-item")).map(function (el) {
+    return { el: el,
+             bx: num(el.getAttribute("data-x")),
+             by: num(el.getAttribute("data-y")),
+             br: num(el.getAttribute("data-r")),
+             cx: 0, cy: 0, cs: 0, tx: 0, ty: 0, ts: 0 };
+  });
+  if (!cards.length) return;
+
+  var REACH = 320;     /* px at which a card stops noticing the cursor */
+  var SHOVE = 118;     /* px it travels when the cursor is right on it  */
+  var raf = 0, running = false, geo = null;
+
+  function measure() { geo = box.getBoundingClientRect(); }
+  measure();
+  addEventListener("resize", measure, { passive: true });
+  addEventListener("scroll", measure, { passive: true });
+
+  function frame() {
+    running = false;
+    var moving = false;
+    for (var i = 0; i < cards.length; i++) {
+      var c = cards[i];
+      c.cx += (c.tx - c.cx) * 0.14;      /* damped toward the target, never pinned */
+      c.cy += (c.ty - c.cy) * 0.14;
+      c.cs += (c.ts - c.cs) * 0.14;
+      if (Math.abs(c.tx - c.cx) > 0.1 || Math.abs(c.ty - c.cy) > 0.1 ||
+          Math.abs(c.ts - c.cs) > 0.001) moving = true;
+      c.el.style.transform =
+        "translate(" + (c.bx + c.cx).toFixed(1) + "px," + (c.by + c.cy).toFixed(1) + "px) " +
+        "rotate(" + (c.br + c.cx * 0.05).toFixed(2) + "deg) " +
+        "scale(" + (1 + c.cs).toFixed(3) + ")";
+      /* whatever the cursor is nearest rides on top of the pile */
+      c.el.style.zIndex = String(3 + Math.round(c.cs * 400));
+    }
+    if (moving && !document.hidden) { running = true; raf = requestAnimationFrame(frame); }
+  }
+  function kick() { if (!running && !document.hidden) { running = true; raf = requestAnimationFrame(frame); } }
+
+  box.addEventListener("pointermove", function (e) {
+    if (!geo) measure();
+    var px = e.clientX - geo.left, py = e.clientY - geo.top;
+    var mx = geo.width / 2, my = geo.height / 2;
+    for (var i = 0; i < cards.length; i++) {
+      var c = cards[i];
+      var dx = (mx + c.bx) - px, dy = (my + c.by) - py;
+      var d = Math.sqrt(dx * dx + dy * dy) || 1;
+      var s = Math.max(0, 1 - d / REACH);
+      s = s * s;                     /* squared, so the shove is local rather than global */
+      c.tx = (dx / d) * s * SHOVE;
+      c.ty = (dy / d) * s * SHOVE;
+      c.ts = s * 0.07;
+    }
+    kick();
+  }, { passive: true });
+
+  box.addEventListener("pointerleave", function () {
+    for (var i = 0; i < cards.length; i++) { cards[i].tx = cards[i].ty = cards[i].ts = 0; }
+    kick();                          /* settle back into the pile */
+  });
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { cancelAnimationFrame(raf); running = false; }
+  });
+})();
