@@ -36,7 +36,12 @@ ul { list-style: none; }
   --gold-ink:   #8A6C26;
   --border:     #E8E5DF;
   --border2:    #F0EDE7;
-  --font:       'Plus Jakarta Sans', system-ui, sans-serif;
+  /* The shop's own pairing, read off the live site's stylesheet rather
+     than chosen: headings and links are Karla, body copy is Old Standard
+     TT. An inverted pairing (sans display over serif prose), which is
+     unusual enough that guessing would not have landed on it. */
+  --font:       'Karla', system-ui, sans-serif;
+  --font-body:  'Old Standard TT', Georgia, serif;
   --max:        1160px;
   --nav-h:      78px;
   --r:          12px;
@@ -615,7 +620,7 @@ h4 { font-size: 1rem; font-weight: 700; }
   position: relative;
 }
 .test-quote-mark {
-  font-family: Georgia, serif;
+  font-family: var(--font-body);
   font-size: 5rem;
   line-height: .5;
   color: var(--orange);
@@ -1772,4 +1777,17 @@ ol.timeline { list-style: none; padding: 0; margin: 0 auto; }
 
 @media (prefers-reduced-motion: reduce) {
   .g3d-float img { animation: none; transform: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PROSE — the serif half of the shop's pairing.
+   Scoped to running text, not applied via `body`, so the small
+   uppercase UI chrome keeps the sans it was drawn for.
+   ══════════════════════════════════════════════════════════════ */
+p, blockquote {
+  font-family: var(--font-body);
+  /* Old Standard TT has a noticeably smaller x-height than Karla, so it
+     reads a size down at the same px. Nudged back to optical parity. */
+  font-size: 1.04em;
+  line-height: 1.72;
 }
