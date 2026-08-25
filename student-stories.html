@@ -22,7 +22,7 @@
 <!-- ░░ NAV ░░ -->
 <nav id="nav">
   <div class="wrap">
-    <div class="nav-inner">
+    <div class="nav-top">
       <a href="index.html" class="logo" aria-label="Texas Music Lab — home">
         <img src="assets/logo-dark.png" alt="" class="logo-mark" width="365" height="320" decoding="async">
         <span class="logo-text">
@@ -31,7 +31,28 @@
           <span class="logo-sub">Plano, TX</span>
         </span>
       </a>
-      <ul class="nav-menu">
+      <form class="site-search" id="siteSearch" role="search">
+          <svg class="ss-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input type="search" id="siteSearchInput" autocomplete="off" spellcheck="false"
+                 placeholder="What are you looking for?" aria-label="Search this site"
+                 aria-controls="searchResults" aria-expanded="false">
+          <div class="search-results" id="searchResults" role="listbox" hidden></div>
+        </form>
+      <div class="nav-right">
+          <button type="button" id="cartBtn" class="cart-btn" aria-expanded="false"
+                  aria-controls="cartTray" aria-label="Enquiry list, empty">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+            <span class="cart-count" id="cartCount">0</span>
+          </button>
+          <span class="cart-label" id="cartLabel">0 items</span>
+          <div class="cart-tray" id="cartTray" hidden></div>
+        <button id="hbg" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+  <div class="nav-bar">
+    <div class="wrap">
+<ul class="nav-menu">
         <li class="nav-item"><a href="index.html" class="nav-link" id="nl-home">Home</a></li>
         <li class="nav-item">
           <a href="services.html" class="nav-link" id="nl-svc">Services <span class="chev">▾</span></a>
@@ -55,13 +76,10 @@
         </li>
         <li class="nav-item"><a href="contact.html" class="nav-link" id="nl-contact">Contact</a></li>
       </ul>
-      <div class="nav-right">
-        <a href="contact.html" class="btn btn-orange btn-sm">Book a Lesson</a>
-        <button id="hbg" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <a href="contact.html" class="btn btn-orange btn-sm nav-cta">Book a Lesson</a>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 <div id="mob">
   <a href="index.html" class="mob-link" data-mob="home">Home</a>
   <a href="services.html" class="mob-link" data-mob="svc">Services</a>
@@ -511,5 +529,6 @@
     if (years > 0 && years < 200) el.textContent = String(years);
   });
 </script>
+<script src="assets/site.js" defer></script>
 </body>
 </html>

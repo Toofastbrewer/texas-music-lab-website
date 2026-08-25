@@ -43,7 +43,7 @@ ul { list-style: none; }
   --font:       'Karla', system-ui, sans-serif;
   --font-body:  'Old Standard TT', Georgia, serif;
   --max:        1160px;
-  --nav-h:      78px;
+  --nav-h:      118px;   /* logo row + nav row */
   --r:          12px;
   --r-lg:       20px;
   --sh:         0 4px 20px rgba(0,0,0,.07);
@@ -187,25 +187,28 @@ h4 { font-size: 1rem; font-weight: 700; }
 #nav {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: var(--nav-h);
   z-index: 100;
   background: #fff;
   border-bottom: 1px solid transparent;
   transition: border-color .3s, box-shadow .3s;
-  display: flex;
-  align-items: center;
+  /* two stacked rows: it sizes to content, and --nav-h is what everything
+     else offsets against, so the token has to match what this renders at */
+  display: block;
+  min-height: var(--nav-h);
 }
 #nav.stuck {
   border-color: var(--border);
   box-shadow: 0 2px 24px rgba(0,0,0,.07);
 }
 
-.nav-inner {
+.nav-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 26px;
   width: 100%;
+  padding: 13px 0;
 }
+.nav-top .logo { flex: 0 0 auto; }
 
 .logo {
   display: flex;
@@ -1077,7 +1080,7 @@ html.js .fu:nth-child(6) { transition-delay: .5s; }
 }
 @media (max-width: 800px) {
   .logo-mark   { height: 38px; }
-  .nav-menu, .nav-right .btn { display: none; }
+  .nav-menu { display: none; }
   #hbg         { display: flex; }
   .nav-right   { gap: 0; }
   .sec         { padding: 60px 0; }
@@ -1767,4 +1770,153 @@ p, blockquote {
      reads a size down at the same px. Nudged back to optical parity. */
   font-size: 1.04em;
   line-height: 1.72;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HEADER ROW 2 + SEARCH + ENQUIRY LIST
+   ══════════════════════════════════════════════════════════════ */
+.nav-bar {
+  border-top: 1px solid var(--border2);
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
+}
+.nav-bar .wrap { display: flex; align-items: center; gap: 6px; }
+.nav-bar .nav-menu { gap: 4px; }
+.nav-bar .nav-link {
+  text-transform: uppercase;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .6px;
+  padding: 13px 12px;
+}
+.nav-cta { margin-left: 8px; text-transform: uppercase; letter-spacing: .6px; }
+
+/* ── search ───────────────────────────────────────────────── */
+.site-search { position: relative; flex: 1 1 auto; max-width: 520px; margin: 0 auto; }
+.site-search input {
+  width: 100%;
+  font-family: var(--font);
+  font-size: .95rem;
+  color: var(--text);
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 44px 11px 15px;      /* room for the icon on the right */
+  transition: border-color .18s var(--ease-out), box-shadow .18s var(--ease-out);
+}
+.site-search input:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px var(--orange-lt);
+}
+.site-search input::-webkit-search-cancel-button { cursor: pointer; }
+.ss-icon {
+  position: absolute;
+  right: 14px; top: 50%;
+  transform: translateY(-50%);
+  width: 19px; height: 19px;
+  fill: none; stroke: var(--muted); stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+.search-results {
+  position: absolute;
+  top: calc(100% + 8px); left: 0; right: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--sh-lg);
+  overflow: hidden;
+  z-index: 40;
+}
+.sr-item { display: block; padding: 11px 15px; border-bottom: 1px solid var(--border2); }
+.sr-item:last-child { border-bottom: 0; }
+.sr-item:hover, .sr-item:focus-visible { background: var(--orange-lt); }
+.sr-t { display: block; font-weight: 700; font-size: .92rem; color: var(--text); }
+.sr-d { display: block; font-size: .8rem; color: var(--body); margin-top: 2px; }
+.sr-none { padding: 14px 15px; font-size: .88rem; color: var(--body); }
+
+/* ── enquiry list ─────────────────────────────────────────── */
+.nav-right { position: relative; display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+.cart-btn {
+  position: relative;
+  display: flex; align-items: center;
+  padding: 6px;
+  color: var(--text);
+}
+.cart-btn svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linejoin: round; }
+.cart-btn:hover { color: var(--orange); }
+.cart-count {
+  position: absolute;
+  top: -2px; right: -4px;
+  min-width: 18px; height: 18px;
+  border-radius: 9px;
+  background: var(--orange);
+  color: #fff;
+  font-size: .68rem; font-weight: 800;
+  display: grid; place-items: center;
+  padding: 0 5px;
+}
+.cart-count[hidden] { display: none; }   /* a display rule out-specifies [hidden] */
+.cart-label {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: .2px;
+  white-space: nowrap;
+}
+.cart-tray {
+  position: absolute;
+  top: calc(100% + 10px); right: 0;
+  width: min(320px, calc(100vw - 32px));
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  box-shadow: var(--sh-lg);
+  padding: 14px;
+  z-index: 40;
+}
+.ct-none { font-size: .86rem; color: var(--body); margin: 0; }
+.ct-none a { color: var(--orange); font-weight: 700; }
+.ct-list { margin: 0 0 12px; }
+.ct-list li {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 7px 0; border-bottom: 1px solid var(--border2);
+  font-size: .88rem; color: var(--text);
+}
+.ct-list button { color: var(--muted); font-size: 1.15rem; line-height: 1; padding: 0 4px; }
+.ct-list button:hover { color: var(--orange); }
+.ct-send { width: 100%; justify-content: center; }
+
+/* an "add" control that reflects whether the item is already on the list */
+.enq-btn {
+  font-family: var(--font);
+  font-size: .8rem; font-weight: 700;
+  color: var(--orange);
+  border: 1.5px solid var(--orange);
+  border-radius: 7px;
+  padding: 7px 12px;
+  background: none;
+  transition: background-color .18s var(--ease-out), color .18s var(--ease-out);
+}
+.enq-btn:hover { background: var(--orange); color: #fff; }
+.enq-btn.is-added { background: var(--orange); color: #fff; }
+
+@media (max-width: 900px) {
+  /* one row on a phone: the nav row is replaced by the existing drawer, and
+     a centred search field has nowhere to go beside the logo */
+  :root { --nav-h: 72px; }
+  .nav-bar { display: none; }
+  .site-search { display: none; }
+  .nav-top { padding: 10px 0; }
+  /* The wordmark reads TEXAS MUSIC LAB now, which is wide enough that the
+     logo plus the cart plus its label plus the hamburger overran 390px and
+     pushed the hamburger off-screen - i.e. no navigation at all on a phone.
+     The label is the least load-bearing of those, so it goes first. */
+  .cart-label { display: none; }
+}
+
+@media (max-width: 560px) {
+  .logo-wordmark { height: 17px; }   /* buys back another ~38px */
+  .logo-sub { font-size: .54rem; letter-spacing: 1.8px; }
 }
