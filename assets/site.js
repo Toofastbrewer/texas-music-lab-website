@@ -214,6 +214,9 @@
              bx: num(el.getAttribute("data-x")),
              by: num(el.getAttribute("data-y")),
              br: num(el.getAttribute("data-r")),
+             /* each card sits at a slightly different size for depth, so the
+                pointer lift has to add to that base rather than replace it */
+             bs: num(el.getAttribute("data-s")) || 1,
              cx: 0, cy: 0, cs: 0, tx: 0, ty: 0, ts: 0 };
   });
   if (!cards.length) return;
@@ -240,7 +243,7 @@
       c.el.style.transform =
         "translate(" + (c.bx + c.cx).toFixed(1) + "px," + (c.by + c.cy).toFixed(1) + "px) " +
         "rotate(" + (c.br + c.cx * 0.05).toFixed(2) + "deg) " +
-        "scale(" + (1 + c.cs).toFixed(3) + ")";
+        "scale(" + (c.bs + c.cs).toFixed(3) + ")";
       /* whatever the cursor is nearest rides on top of the pile */
       c.el.style.zIndex = String(3 + Math.round(c.cs * 400));
     }
