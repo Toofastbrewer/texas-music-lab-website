@@ -219,7 +219,7 @@
   if (!cards.length) return;
 
   var REACH = 320;     /* px at which a card stops noticing the cursor */
-  var SHOVE = 118;     /* px it travels when the cursor is right on it  */
+  var SHOVE = 68;      /* px it travels when the cursor is right on it  */
   var raf = 0, running = false, geo = null;
 
   function measure() { geo = box.getBoundingClientRect(); }
@@ -232,9 +232,9 @@
     var moving = false;
     for (var i = 0; i < cards.length; i++) {
       var c = cards[i];
-      c.cx += (c.tx - c.cx) * 0.14;      /* damped toward the target, never pinned */
-      c.cy += (c.ty - c.cy) * 0.14;
-      c.cs += (c.ts - c.cs) * 0.14;
+      c.cx += (c.tx - c.cx) * 0.10;      /* damped toward the target, never pinned */
+      c.cy += (c.ty - c.cy) * 0.10;
+      c.cs += (c.ts - c.cs) * 0.10;
       if (Math.abs(c.tx - c.cx) > 0.1 || Math.abs(c.ty - c.cy) > 0.1 ||
           Math.abs(c.ts - c.cs) > 0.001) moving = true;
       c.el.style.transform =
@@ -260,7 +260,7 @@
       s = s * s;                     /* squared, so the shove is local rather than global */
       c.tx = (dx / d) * s * SHOVE;
       c.ty = (dy / d) * s * SHOVE;
-      c.ts = s * 0.07;
+      c.ts = s * 0.045;
     }
     kick();
   }, { passive: true });
