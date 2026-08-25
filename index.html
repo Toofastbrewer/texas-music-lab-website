@@ -208,11 +208,16 @@
     <div class="split">
       <div class="g3d" id="g3d">
         <div class="g3d-stage" id="g3dStage">
-          <div class="g3d-card g3d-main" data-depth="52" data-drift="-26">
-            <img src="assets/photos/storefront.jpg" alt="A blue electric guitar on a stand outside the Texas Music Lab storefront, beside a blue Mustang">
+          <!-- Front plane: a cutout, so no card chrome - it carries its own
+               drop-shadow, which follows the alpha instead of a box. -->
+          <div class="g3d-float" data-depth="62" data-drift="-22">
+            <img src="assets/photos/guitar.webp" width="537" height="918"
+                 alt="A cherry sunburst semi-hollow electric guitar with gold hardware">
           </div>
-          <div class="g3d-card g3d-back" data-depth="-34" data-drift="30">
-            <img src="assets/photos/window-sign.jpg" alt="">
+          <!-- Behind it, the real shop. The instrument carries the picture;
+               the photograph is what makes the claim true. -->
+          <div class="g3d-card g3d-back" data-depth="-38" data-drift="28">
+            <img src="assets/photos/storefront.jpg" alt="A blue electric guitar on a stand outside the Texas Music Lab storefront, beside a blue Mustang">
           </div>
         </div>
         <div class="img-badge">
@@ -730,7 +735,7 @@
     var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (still) return;                       /* CSS already renders it square-on */
 
-    var cards = [].slice.call(stage.querySelectorAll('.g3d-card'));
+    var cards = [].slice.call(stage.querySelectorAll('.g3d-card, .g3d-float'));
     var tx = 0, ty = 0, cx = 0, cy = 0;      /* target vs current tilt */
     var drift = 0, raf = 0, running = false;
 
