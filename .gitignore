@@ -1,0 +1,7 @@
+# OS / editor cruft
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# scratch copies used only for screenshots
+_*.html

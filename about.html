@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The story behind Texas Music Lab — a music school, shop, and repair studio rooted in Plano, TX since the 2010s.">
+  <title>About Us | Texas Music Lab — Plano, TX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .val-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 28px 22px;
+      text-align: center;
+    }
+    .val-icon { font-size: 2rem; margin-bottom: 12px; }
+    .val-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .val-desc  { font-size: .85rem; color: var(--body); line-height: 1.65; }
+
+    .founder-sec {
+      background: var(--dark);
+      padding: 96px 0;
+      text-align: center;
+    }
+    .founder-quote {
+      font-family: Georgia, serif;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-style: italic;
+      color: rgba(255,255,255,.85);
+      max-width: 760px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+      position: relative;
+    }
+    .founder-quote::before {
+      content: '"';
+      font-size: 6rem;
+      line-height: .3;
+      color: var(--orange);
+      opacity: .25;
+      position: absolute;
+      top: 0; left: -16px;
+      font-family: Georgia, serif;
+    }
+    .founder-attr {
+      font-size: .9rem;
+      color: var(--orange);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .founder-sub { font-size: .82rem; color: rgba(255,255,255,.4); margin-top: 4px; }
+
+    @media (max-width: 800px) {
+      .values-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .values-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ░░ NAV ░░ -->
+<nav id="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <a href="index.html" class="logo" aria-label="Texas Music Lab — home">
+        <img src="assets/logo-dark.png" alt="" class="logo-mark" width="365" height="320" decoding="async">
+        <span class="logo-text">
+          <span class="logo-name">Texas Music Lab</span>
+          <span class="logo-sub">Plano, Texas</span>
+        </span>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link" id="nl-home">Home</a></li>
+        <li class="nav-item">
+          <a href="services.html" class="nav-link" id="nl-svc">Services <span class="chev">▾</span></a>
+          <div class="dropdown">
+            <a href="services.html#lessons"><span class="d-icon">🎵</span> Lessons</a>
+            <a href="services.html#instruments"><span class="d-icon">🎸</span> Instruments</a>
+            <a href="services.html#repairs"><span class="d-icon">🔧</span> Repairs</a>
+            <a href="shop.html"><span class="d-icon">🛍️</span> The Shop</a>
+            <a href="process.html"><span class="d-icon">🧭</span> How It Works</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="instructors.html" class="nav-link" id="nl-inst">Instructors</a></li>
+        <li class="nav-item"><a href="events.html" class="nav-link" id="nl-events">Events</a></li>
+        <li class="nav-item"><a href="resources.html" class="nav-link" id="nl-res">Resources</a></li>
+        <li class="nav-item">
+          <a href="about.html" class="nav-link" id="nl-about">About <span class="chev">▾</span></a>
+          <div class="dropdown">
+            <a href="about.html"><span class="d-icon">🏛️</span> Our Story</a>
+            <a href="student-stories.html"><span class="d-icon">⭐</span> Student Stories</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="contact.html" class="nav-link" id="nl-contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="contact.html" class="btn btn-orange btn-sm">Book a Lesson</a>
+        <button id="hbg" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="mob">
+  <a href="index.html" class="mob-link" data-mob="home">Home</a>
+  <a href="services.html" class="mob-link" data-mob="svc">Services</a>
+  <div class="mob-sub">
+    <a href="services.html#lessons">🎵 Lessons</a>
+    <a href="services.html#instruments">🎸 Instruments</a>
+    <a href="services.html#repairs">🔧 Repairs</a>
+    <a href="shop.html">🛍️ The Shop</a>
+    <a href="process.html">🧭 How It Works</a>
+  </div>
+  <a href="instructors.html" class="mob-link" data-mob="inst">Instructors</a>
+  <a href="events.html" class="mob-link" data-mob="events">Events</a>
+  <a href="resources.html" class="mob-link" data-mob="res">Resources</a>
+  <a href="about.html" class="mob-link" data-mob="about">About</a>
+  <div class="mob-sub">
+    <a href="student-stories.html">⭐ Student Stories</a>
+  </div>
+  <a href="contact.html" class="mob-link" data-mob="contact">Contact</a>
+  <a href="contact.html" class="btn btn-orange btn-full mob-cta">Book a Lesson</a>
+</div>
+
+<!-- ░░ PAGE HERO ░░ -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-text">
+      <nav class="bc" aria-label="Breadcrumb">
+        <a href="index.html">Home</a><span class="bc-sep"> › </span><span>About Us</span>
+      </nav>
+      <div class="tag">Our Story</div>
+      <h1 data-word-reveal>Music Is Our<br>Passion &amp; Purpose</h1>
+      <p class="lead">We're not a chain. We're a real shop staffed by real musicians who care deeply about the Plano community and the craft of music.</p>
+      <a href="contact.html" class="btn btn-orange" style="margin-top:24px;">Visit Us Today →</a>
+    </div>
+    <div class="page-hero-img">
+      <img src="assets/photos/window-sign.jpg" alt="The shop&#39;s window sign lit at dusk — Buy, Sell, Repair, Lessons, Est. 2007" />
+    </div>
+  </div>
+</div>
+
+<!-- ░░ OUR STORY ░░ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="tag">Who We Are</div>
+        <h2>Built on a Belief That<br>Music Belongs to Everyone</h2>
+        <p style="color:var(--body);line-height:1.8;margin:16px 0 14px;">Texas Music Lab was founded on a simple idea: every person who walks through our door deserves access to great music education, quality instruments, and honest repairs — regardless of their experience level or budget.</p>
+        <p style="color:var(--body);line-height:1.8;margin-bottom:14px;">Over the years, we've built a team of working musicians who also happen to be exceptional teachers. We've curated an instrument inventory worth playing. We've developed a reputation for repairs done right the first time. And we've become a place where Plano's music community comes together.</p>
+        <p style="color:var(--body);line-height:1.8;margin-bottom:28px;">Located at 2229 W 15th St, Suite B, we serve students from Plano, Allen, Frisco, McKinney, and across the DFW metroplex. Whether you're 7 or 70, a first-timer or a lifelong player, there's a place for you here.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <a href="instructors.html" class="btn btn-orange">Meet Our Team →</a>
+          <a href="contact.html"     class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="split-img" style="aspect-ratio:4/5;">
+        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=800&q=80" alt="Guitar amps and equipment in the studio" />
+        <div class="img-badge">
+          <span class="badge-num">Plano</span>
+          <span class="badge-lbl">Texas · Est. 2007</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ STATS ░░ -->
+<div class="stats-bar">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="fu"><span class="stat-n" data-since="2007">19</span><div class="stat-l">Years in Business</div></div>
+      <div class="fu"><span class="stat-n">500+</span><div class="stat-l">Students Taught</div></div>
+      <div class="fu"><span class="stat-n">5</span><div class="stat-l">Expert Instructors</div></div>
+      <div class="fu"><span class="stat-n">100s</span><div class="stat-l">Instruments Repaired</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ VALUES ░░ -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-hd c">
+      <div class="tag">What We Stand For</div>
+      <h2>Our Values</h2>
+      <p class="lead">These aren't buzzwords — they're how we make every decision at Texas Music Lab.</p>
+    </div>
+    <div class="values-grid">
+      <div class="val-card fu">
+        <div class="val-icon">🎯</div>
+        <div class="val-title">Intentional Matching</div>
+        <p class="val-desc">We listen before we match. Every student gets the instructor who genuinely fits their goals — not whoever has an open slot.</p>
+      </div>
+      <div class="val-card fu">
+        <div class="val-icon">🤝</div>
+        <div class="val-title">Honest Always</div>
+        <p class="val-desc">Whether it's a repair quote or an instrument recommendation, we tell you the truth — even when it costs us a sale.</p>
+      </div>
+      <div class="val-card fu">
+        <div class="val-icon">🎶</div>
+        <div class="val-title">Music for Everyone</div>
+        <p class="val-desc">Age, background, and skill level don't matter here. If you want to learn, we want to teach you. No barriers, no judgment.</p>
+      </div>
+      <div class="val-card fu">
+        <div class="val-icon">🏘️</div>
+        <div class="val-title">Community First</div>
+        <p class="val-desc">We're part of Plano's fabric. Supporting us means supporting local music education, local musicians, and the local community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ FOUNDER TRIBUTE ░░ -->
+<div class="founder-sec">
+  <div class="wrap" style="max-width:860px;">
+    <div class="tag" style="color:var(--orange);justify-content:center;margin-bottom:24px;">In Memoriam</div>
+    <p class="founder-quote">
+      "Let us share our passion for music with you."
+    </p>
+    <div class="founder-attr">Jack Buras — Founder, Texas Music Lab</div>
+    <div class="founder-sub">Passed away October 2025</div>
+    <div style="max-width:600px;margin:32px auto 0;font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.8;text-align:center;">
+      Jack founded Texas Music Lab with a belief that music education should be accessible, personal, and joyful. He built a team that shared that vision, and that team carries it forward every day. His legacy lives on in every student who walks through our doors and every lesson we teach.
+    </div>
+  </div>
+</div>
+
+<!-- ░░ GALLERY ░░ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-hd c">
+      <div class="tag">The Lab</div>
+      <h2>Inside Texas Music Lab</h2>
+      <p class="lead">A real shop. Real instruments. Real musicians.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-item fu">
+        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=600&q=80" alt="Guitarist performing" />
+      </div>
+      <div class="gal-item fu">
+        <img src="https://images.unsplash.com/photo-1516924962500-2b4b3b99ea02?auto=format&fit=crop&w=600&q=80" alt="Electric guitar" />
+      </div>
+      <div class="gal-item fu">
+        <img src="https://images.unsplash.com/photo-1465821185615-20b3c2fbf41b?auto=format&fit=crop&w=600&q=80" alt="Guitar strings close up" />
+      </div>
+      <div class="gal-item fu">
+        <img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=600&q=80" alt="Guitar amp detail" />
+      </div>
+      <div class="gal-item fu">
+        <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=600&q=80" alt="Music store interior" />
+      </div>
+      <div class="gal-item fu">
+        <img src="https://images.unsplash.com/photo-1525201548942-d8732f6617a0?auto=format&fit=crop&w=600&q=80" alt="Acoustic guitar on wall" />
+      </div>
+      <div class="gal-item fu">
+        <img src="https://images.unsplash.com/photo-1564186763535-ebb21ef5277f?auto=format&fit=crop&w=600&q=80" alt="Guitar lesson in progress" />
+      </div>
+      <div class="gal-item fu">
+        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Live performance on stage" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ WHY CHOOSE US ░░ -->
+<section class="sec sec-alt">
+  <div class="wrap">
+    <div class="sec-hd c">
+      <div class="tag">Why Choose Us</div>
+      <h2>What Makes Us Different</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card fu">
+        <div class="why-icon">🎯</div>
+        <h4 class="why-title">Instructor Matching</h4>
+        <p class="why-desc">We pair every student with the right instructor for their goals, genre, and learning style — no cold assignments.</p>
+      </div>
+      <div class="why-card fu">
+        <div class="why-icon">🎸</div>
+        <h4 class="why-title">Curated Inventory</h4>
+        <p class="why-desc">Every instrument in our shop was hand-selected. You can try anything before committing — no pressure, ever.</p>
+      </div>
+      <div class="why-card fu">
+        <div class="why-icon">🔧</div>
+        <h4 class="why-title">Expert Repairs</h4>
+        <p class="why-desc">We treat every instrument like it's our own. Honest assessments, fair pricing, and work done right the first time.</p>
+      </div>
+      <div class="why-card fu">
+        <div class="why-icon">🌟</div>
+        <h4 class="why-title">5-Star Track Record</h4>
+        <p class="why-desc">Years of five-star reviews from students, parents, and gear lovers across the DFW area speak for themselves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░ CTA ░░ -->
+<div class="cta-sec">
+  <div class="wrap">
+    <h2>Come See What We're About</h2>
+    <p class="lead">Stop by the shop, book a lesson, or just browse the instruments. We'd love to meet you.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="contact.html"  class="btn btn-white btn-lg">Get in Touch →</a>
+      <a href="services.html" class="btn btn-lg" style="border:2px solid rgba(255,255,255,.5);color:#fff;">View Services</a>
+    </div>
+  </div>
+</div>
+
+<!-- ░░ FOOTER ░░ -->
+<footer>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-logo">
+          <a href="index.html" class="logo" aria-label="Texas Music Lab — home">
+            <img src="assets/logo-light.png" alt="" class="logo-mark" width="365" height="320" loading="lazy" decoding="async">
+            <span class="logo-text"><span class="logo-name">Texas Music Lab</span><span class="logo-sub">Plano, Texas</span></span>
+          </a>
+        </div>
+        <p class="ft-tagline">Sharing our passion for music with the Plano community — one lesson, one instrument, one repair at a time.</p>
+        <div class="social-row">
+          <a href="https://www.instagram.com/texasmusiclab/" class="soc-btn"
+             aria-label="Texas Music Lab on Instagram"
+             target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 aria-hidden="true" focusable="false">
+              <rect x="2" y="2" width="20" height="20" rx="5.5"/>
+              <circle cx="12" cy="12" r="4.2"/>
+              <circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-head">Explore</div>
+        <ul class="ft-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="shop.html">The Shop</a></li>
+          <li><a href="process.html">How It Works</a></li>
+          <li><a href="instructors.html">Instructors</a></li>
+          <li><a href="events.html">Events</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-head">Learn &amp; Discover</div>
+        <ul class="ft-links">
+          <li><a href="services.html#lessons">Music Lessons</a></li>
+          <li><a href="services.html#pricing">Lesson Pricing</a></li>
+          <li><a href="services.html#repairs">Instrument Repairs</a></li>
+          <li><a href="resources.html">Resources &amp; Guides</a></li>
+          <li><a href="student-stories.html">Student Stories</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-head">Contact</div>
+        <div class="ft-ci"><span class="ic">📍</span><span>2229 W 15th St, Suite B<br>Plano, TX 75075</span></div>
+        <div class="ft-ci"><span class="ic">📞</span><a href="tel:+19729850900">972.985.0900</a></div>
+        <div class="ft-ci"><span class="ic">🕐</span><span>Tue–Sat 12–6 PM<br>Sun &amp; Mon Closed</span></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© 2026 Texas Music Lab · All Rights Reserved</span>
+      <div class="ft-legal"><a href="privacy.html">Privacy Policy</a><a href="privacy.html#terms">Terms</a><a href="privacy.html#accessibility">Accessibility</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ░░ COOKIE ░░ -->
+<div id="cookie">
+  <p class="cookie-txt"><strong>We use cookies</strong> to analyze site traffic and improve your experience. No personal data is sold. See our <a href="privacy.html" style="color:var(--orange)">Privacy Policy</a>.</p>
+  <div class="cookie-btns">
+    <button class="btn btn-orange btn-sm" onclick="setCookie('yes')">Accept</button>
+    <button class="btn btn-outline btn-sm" onclick="setCookie('no')">Decline</button>
+  </div>
+</div>
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>nav.classList.toggle('stuck',scrollY>20),{passive:true});
+  const hbg=document.getElementById('hbg'),mob=document.getElementById('mob');
+  hbg.addEventListener('click',()=>{const o=mob.classList.toggle('open');hbg.classList.toggle('open',o);hbg.setAttribute('aria-expanded',o);});
+  mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mob.classList.remove('open');hbg.classList.remove('open');hbg.setAttribute('aria-expanded',false);}));
+  document.getElementById('nl-about')?.classList.add('active');
+  document.querySelector('#mob [data-mob="about"]')?.classList.add('active');
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const item=q.closest('.faq-item');const was=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!was)item.classList.add('open');});});
+  function setCookie(v){localStorage.setItem('tml_c',v);document.getElementById('cookie').classList.add('off');}
+  if(localStorage.getItem('tml_c'))document.getElementById('cookie')?.classList.add('off');
+
+  /* ── MOTION LAYER ──────────────────────────────────────────────
+     Word-reveal headings + scroll-linked process timeline.
+     Both no-op safely on pages that don't use them.            */
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* Word reveal ------------------------------------------------
+       Walks child nodes instead of using textContent, so <br>
+       line breaks and inline <span> accents survive the split.  */
+    function splitHeading(el) {
+      if (el.dataset.wrReady === 'true') return;
+      var label = (el.textContent || '').replace(/\s+/g, ' ').trim();
+      var i = 0;
+
+      (function walk(parent) {
+        Array.prototype.slice.call(parent.childNodes).forEach(function (node) {
+          if (node.nodeType === 3) {
+            var parts = node.textContent.split(/(\s+)/);
+            var frag = document.createDocumentFragment();
+            parts.forEach(function (part) {
+              if (!part) return;
+              if (!part.trim()) { frag.appendChild(document.createTextNode(part)); return; }
+              var w = document.createElement('span');
+              w.className = 'wr-word';
+              w.setAttribute('aria-hidden', 'true');
+              w.style.setProperty('--wr-i', i++);
+              w.textContent = part;
+              frag.appendChild(w);
+            });
+            parent.replaceChild(frag, node);
+          } else if (node.nodeType === 1 && node.tagName !== 'BR') {
+            walk(node);
+          }
+        });
+      })(el);
+
+      if (label) el.setAttribute('aria-label', label);
+      el.dataset.wrReady = 'true';
+      el.classList.add('is-ready');
+    }
+
+    var heads = Array.prototype.slice.call(document.querySelectorAll('h1[data-word-reveal]'));
+    if (heads.length) {
+      if (reduce || !('IntersectionObserver' in window)) {
+        heads.forEach(function (h) { h.classList.add('is-ready', 'is-visible'); });
+      } else {
+        var hObs = new IntersectionObserver(function (entries, io) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
+        heads.forEach(function (h) { splitHeading(h); hObs.observe(h); });
+      }
+    }
+
+    /* Process timeline -------------------------------------------
+       Geometry comes from the first and last step markers, so the
+       rail starts and ends on real content, not section edges.  */
+    var tl = document.querySelector('.timeline');
+    if (!tl) return;
+    var items = Array.prototype.slice.call(tl.querySelectorAll('.tl-item'));
+    if (!items.length) return;
+
+    function centerOf(item) {
+      var r = item.querySelector('.tl-num').getBoundingClientRect();
+      return r.top + r.height / 2;
+    }
+
+    function measure() {
+      var base = tl.getBoundingClientRect().top;
+      var top = centerOf(items[0]) - base;
+      var bottom = centerOf(items[items.length - 1]) - base;
+      tl.style.setProperty('--tl-top', top + 'px');
+      tl.style.setProperty('--tl-height', Math.max(0, bottom - top) + 'px');
+      return { top: top, height: Math.max(1, bottom - top) };
+    }
+
+    var geo = measure();
+
+    if (reduce) {
+      tl.style.setProperty('--tl-fill', 1);
+      items.forEach(function (it) { it.classList.add('is-active'); });
+      window.addEventListener('resize', function () { geo = measure(); }, { passive: true });
+      return;
+    }
+
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var base = tl.getBoundingClientRect().top;
+      var startY = base + geo.top;
+      var endY = base + geo.top + geo.height;
+      var anchor = window.innerHeight * 0.58;
+      var p = (anchor - startY) / (endY - startY);
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+      tl.style.setProperty('--tl-fill', p);
+
+      var headY = startY + p * (endY - startY);
+      items.forEach(function (it) {
+        it.classList.toggle('is-active', headY >= centerOf(it) - 1);
+      });
+    }
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { geo = measure(); onScroll(); }, { passive: true });
+    window.addEventListener('load', function () { geo = measure(); onScroll(); });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { geo = measure(); onScroll(); });
+    }
+    update();
+  })();
+
+  /* Tenure counters: the markup already carries the correct number so a no-JS
+     visitor sees the truth; this only keeps it true after each New Year. */
+  document.querySelectorAll('[data-since]').forEach(function (el) {
+    var start = parseInt(el.getAttribute('data-since'), 10);
+    if (!start) return;
+    var years = new Date().getFullYear() - start;
+    if (years > 0 && years < 200) el.textContent = String(years);
+  });
+</script>
+</body>
+</html>
