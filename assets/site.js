@@ -226,8 +226,23 @@
   var raf = 0, running = false, geo = null;
 
   function measure() { geo = box.getBoundingClientRect(); }
-  measure();
-  addEventListener("resize", measure, { passive: true });
+  function measureCards() {
+    /* A rotated card's half-extents are (w/2)cos+(h/2)sin and (w/2)sin+(h/2)cos,
+       not w/2 and h/2 - using the unrotated ones is what let cards drift out of
+       the box. Split from measure() because that runs on scroll, and reading
+       offsetWidth there would force layout on every scroll event. */
+    for (var i = 0; i < cards.length; i++) {
+      var c = cards[i];
+      var rad = Math.abs(c.br) * Math.PI / 180;
+      var w = c.el.offsetWidth / 2, h = c.el.offsetHeight / 2;
+      var grow = c.bs + 0.05;                 /* allow for the pointer lift */
+      c.hw = (w * Math.cos(rad) + h * Math.sin(rad)) * grow;
+      c.hh = (w * Math.sin(rad) + h * Math.cos(rad)) * grow;
+    }
+  }
+  function clamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
+  measure(); measureCards();
+  addEventListener("resize", function () { measure(); measureCards(); }, { passive: true });
   addEventListener("scroll", measure, { passive: true });
 
   function frame() {
@@ -261,8 +276,12 @@
       var d = Math.sqrt(dx * dx + dy * dy) || 1;
       var s = Math.max(0, 1 - d / REACH);
       s = s * s;                     /* squared, so the shove is local rather than global */
-      c.tx = (dx / d) * s * SHOVE;
-      c.ty = (dy / d) * s * SHOVE;
+      /* Clamp the FINAL position, not the displacement, so a card slides
+         along the edge of the box instead of leaving it. */
+      var lx = Math.max(0, geo.width / 2 - c.hw);
+      var ly = Math.max(0, geo.height / 2 - c.hh);
+      c.tx = clamp(c.bx + (dx / d) * s * SHOVE, -lx, lx) - c.bx;
+      c.ty = clamp(c.by + (dy / d) * s * SHOVE, -ly, ly) - c.by;
       c.ts = s * 0.045;
     }
     kick();

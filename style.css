@@ -1974,24 +1974,24 @@ p, blockquote {
 }
 .float-strip {
   position: relative;
-  height: 392px;
+  height: 450px;
   touch-action: pan-y;          /* never eat a vertical swipe */
 }
 .fs-item {
   position: absolute;
   left: 50%; top: 50%;
-  width: 186px;
-  margin: -116px 0 0 -93px;     /* half of 232 x 186 */
+  width: 168px;
+  margin: -105px 0 0 -84px;   /* half of 210 x 168 */
   border-radius: var(--r);
   overflow: hidden;
   box-shadow: 0 16px 38px rgba(20, 19, 32, .22);
   will-change: transform;
 }
-.fs-item:nth-child(1) { transform: translate(0px, -80px) rotate(-4deg) scale(1.0); z-index: 1; }
-.fs-item:nth-child(2) { transform: translate(126px, -25px) rotate(11deg) scale(1.03); z-index: 2; }
-.fs-item:nth-child(3) { transform: translate(78px, 65px) rotate(7deg) scale(0.97); z-index: 3; }
-.fs-item:nth-child(4) { transform: translate(-78px, 65px) rotate(-8deg) scale(1.02); z-index: 4; }
-.fs-item:nth-child(5) { transform: translate(-126px, -25px) rotate(-13deg) scale(0.96); z-index: 5; }
+.fs-item:nth-child(1) { transform: translate(0px, -70px) rotate(-4deg) scale(1.0); z-index: 1; }
+.fs-item:nth-child(2) { transform: translate(118px, -22px) rotate(11deg) scale(1.03); z-index: 2; }
+.fs-item:nth-child(3) { transform: translate(73px, 57px) rotate(7deg) scale(0.97); z-index: 3; }
+.fs-item:nth-child(4) { transform: translate(-73px, 57px) rotate(-8deg) scale(1.02); z-index: 4; }
+.fs-item:nth-child(5) { transform: translate(-118px, -22px) rotate(-13deg) scale(0.96); z-index: 5; }
 
 .fs-inner {
   --fx: 4px; --fy: 5px; --fr: .35deg; --fs: .005;
@@ -2006,22 +2006,23 @@ p, blockquote {
 .fs-item img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
 
 @media (max-width: 900px) {
-  .float-strip { height: 320px; }
-  .fs-item { width: 148px; margin: -92px 0 0 -74px; }
-  .fs-item:nth-child(1) { transform: translate(0px, -64px) rotate(-4deg) scale(1.0); z-index: 1; }
-  .fs-item:nth-child(2) { transform: translate(99px, -20px) rotate(11deg) scale(1.03); z-index: 2; }
-  .fs-item:nth-child(3) { transform: translate(61px, 52px) rotate(7deg) scale(0.97); z-index: 3; }
-  .fs-item:nth-child(4) { transform: translate(-61px, 52px) rotate(-8deg) scale(1.02); z-index: 4; }
-  .fs-item:nth-child(5) { transform: translate(-99px, -20px) rotate(-13deg) scale(0.96); z-index: 5; }   /* no cursor to invite */
+  .float-strip { height: 370px; }
+  .fs-item { width: 132px; margin: -83px 0 0 -66px; }
+  .fs-item:nth-child(1) { transform: translate(0px, -56px) rotate(-4deg) scale(1.0); z-index: 1; }
+  .fs-item:nth-child(2) { transform: translate(93px, -17px) rotate(11deg) scale(1.03); z-index: 2; }
+  .fs-item:nth-child(3) { transform: translate(58px, 45px) rotate(7deg) scale(0.97); z-index: 3; }
+  .fs-item:nth-child(4) { transform: translate(-58px, 45px) rotate(-8deg) scale(1.02); z-index: 4; }
+  .fs-item:nth-child(5) { transform: translate(-93px, -17px) rotate(-13deg) scale(0.96); z-index: 5; }
+   /* no cursor to invite */
 }
 @media (max-width: 560px) {
-  .float-strip { height: 252px; }
-  .fs-item { width: 112px; margin: -70px 0 0 -56px; }
-  .fs-item:nth-child(1) { transform: translate(0px, -48px) rotate(-4deg) scale(1.0); z-index: 1; }
-  .fs-item:nth-child(2) { transform: translate(74px, -15px) rotate(11deg) scale(1.03); z-index: 2; }
-  .fs-item:nth-child(3) { transform: translate(46px, 39px) rotate(7deg) scale(0.97); z-index: 3; }
-  .fs-item:nth-child(4) { transform: translate(-46px, 39px) rotate(-8deg) scale(1.02); z-index: 4; }
-  .fs-item:nth-child(5) { transform: translate(-74px, -15px) rotate(-13deg) scale(0.96); z-index: 5; }
+  .float-strip { height: 292px; }
+  .fs-item { width: 102px; margin: -64px 0 0 -51px; }
+  .fs-item:nth-child(1) { transform: translate(0px, -42px) rotate(-4deg) scale(1.0); z-index: 1; }
+  .fs-item:nth-child(2) { transform: translate(70px, -13px) rotate(11deg) scale(1.03); z-index: 2; }
+  .fs-item:nth-child(3) { transform: translate(43px, 34px) rotate(7deg) scale(0.97); z-index: 3; }
+  .fs-item:nth-child(4) { transform: translate(-43px, 34px) rotate(-8deg) scale(1.02); z-index: 4; }
+  .fs-item:nth-child(5) { transform: translate(-70px, -13px) rotate(-13deg) scale(0.96); z-index: 5; }
 }
 @media (prefers-reduced-motion: reduce) {
   .fs-inner { animation: none; transform: none; }
