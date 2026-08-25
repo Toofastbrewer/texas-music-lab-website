@@ -1650,3 +1650,73 @@ ol.timeline { list-style: none; padding: 0; margin: 0 auto; }
 @media (prefers-reduced-motion: reduce) {
   .trail-layer { display: none; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   ABOUT — layered photo composition with real depth.
+   Two real photographs on separate Z planes inside one perspective
+   stage, drifting apart on scroll and tilting toward the pointer.
+   Static and square-on under reduced motion or on touch.
+   ══════════════════════════════════════════════════════════════ */
+.g3d {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  perspective: 1200px;
+  perspective-origin: 55% 45%;
+}
+.g3d-stage {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .45s var(--ease-out);
+}
+.g3d-card {
+  position: absolute;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--white);
+  will-change: transform;
+}
+.g3d-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.g3d-main {
+  left: 4%;  top: 2%;
+  width: 78%; height: 80%;
+  box-shadow: 0 30px 70px rgba(20, 19, 32, .30);
+}
+.g3d-back {
+  right: 0; bottom: 4%;
+  width: 46%; height: 44%;
+  box-shadow: 0 20px 46px rgba(20, 19, 32, .24);
+  border: 4px solid var(--white);
+}
+
+/* The badge rides in front of both planes. */
+/* The badge was styled as `.split-img .img-badge`; that container is gone,
+   so it needs its own rule. Sits bottom-left, clear of both photo planes. */
+.g3d .img-badge {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 4;
+  background: var(--orange);
+  color: #fff;
+  border-radius: var(--r);
+  padding: 18px 22px;
+  text-align: center;
+  box-shadow: var(--sh-lg);
+}
+.g3d .badge-num { font-size: 1.8rem; }
+
+@media (max-width: 800px) {
+  .g3d-main { width: 84%; height: 78%; }
+  .g3d-back { width: 42%; height: 38%; }
+}
+
+/* No pointer to lean toward, and vestibular motion is the thing being
+   asked about — so present the composition already resolved. */
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .g3d-stage { transform: none !important; transition: none; }
+  .g3d-card  { transform: none !important; }
+  .g3d-main  { left: 0; top: 0; width: 76%; height: 82%; }
+  .g3d-back  { right: 0; bottom: 0; }
+}
