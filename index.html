@@ -28,7 +28,7 @@
         <span class="logo-text">
           <img src="assets/wordmark.svg" class="logo-wordmark" alt="Texas Music Lab"
                width="1080" height="112" decoding="async">
-          <span class="logo-sub">Plano, Texas</span>
+          <span class="logo-sub">Plano, TX</span>
         </span>
       </a>
       <ul class="nav-menu">
@@ -85,36 +85,26 @@
 
 <!-- ░░ HERO ░░ -->
 <section class="home-hero">
-  <div class="wrap">
-    <div class="hero-split">
-      <div class="hero-text">
-        <div class="tag">Plano's Premier Music Studio</div>
-        <h1 data-word-reveal>Enriching Lives<br>Through <span class="hi">Music</span></h1>
-        <p class="lead">Expert lessons for all skill levels, hand-picked new and vintage instruments, and meticulous repairs — all under one roof in Plano, TX.</p>
-        <div class="hero-btns">
-          <a href="contact.html" class="btn btn-orange btn-lg">Book a Lesson →</a>
-          <a href="services.html" class="btn btn-outline btn-lg">Our Services</a>
-        </div>
-        <a href="tel:+19729850900" class="hero-phone">📞 &nbsp;972.985.0900</a>
-        <div class="hero-trust">
-          <div class="trust-item"><span class="trust-icon">⭐</span> 5-Star Rated</div>
-          <div class="trust-item"><span class="trust-icon">🎸</span> All Skill Levels</div>
-          <div class="trust-item"><span class="trust-icon">📍</span> Plano, TX</div>
-        </div>
-      </div>
-      <div class="hero-img-wrap">
-        <div class="hero-img-main">
-          <img src="assets/photos/hollowbody.jpg" alt="Red hollow-body electric guitar hanging under warm string lights in the shop" />
-        </div>
-        <div class="hero-img-badge">
-          <div class="hib-icon">🎵</div>
-          <div>
-            <div class="hib-num" data-since="2007">19</div>
-            <div class="hib-lbl">Years of Music Education</div>
-          </div>
-        </div>
-      </div>
+  <!-- Three panels of the shop itself. Decorative by design: the h1 below
+       already carries the name, so alt text here would announce it twice. -->
+  <div class="hero-strip" aria-hidden="true">
+    <div class="hs-panel"><img src="assets/photos/branded-leather.jpg" alt="" decoding="async"></div>
+    <!-- hollowbody sits in the middle deliberately: it is the only one of the
+         five photographs with no shop signage in it, so nothing competes with
+         the wordmark, and it is also the darkest. -->
+    <div class="hs-panel"><img src="assets/photos/hollowbody.jpg" alt="" decoding="async"></div>
+    <div class="hs-panel"><img src="assets/photos/shop-wall.jpg" alt="" decoding="async"></div>
+  </div>
+  <div class="hero-inner">
+    <h1 class="hero-title">
+      <img src="assets/wordmark.svg" width="1080" height="112" alt="Texas Music Lab">
+    </h1>
+    <p class="hero-tagline">Lessons, Instruments &amp; Repairs &mdash; All Under One Roof in Plano, TX</p>
+    <div class="hero-actions">
+      <a href="contact.html" class="btn btn-white btn-lg">Book a Lesson</a>
+      <a href="services.html" class="btn btn-orange btn-lg">Our Services</a>
     </div>
+    <a href="tel:+19729850900" class="hero-phone">972.985.0900</a>
   </div>
 </section>
 
@@ -423,7 +413,7 @@
           <a href="index.html" class="logo" aria-label="Texas Music Lab — home">
             <img src="assets/logo-light.png" alt="" class="logo-mark" width="365" height="320" loading="lazy" decoding="async">
             <span class="logo-text"><img src="assets/wordmark.svg" class="logo-wordmark" alt="Texas Music Lab"
-               width="1080" height="112" decoding="async"><span class="logo-sub">Plano, Texas</span></span>
+               width="1080" height="112" decoding="async"><span class="logo-sub">Plano, TX</span></span>
           </a>
         </div>
         <p class="ft-tagline">Sharing our passion for music with the Plano community — one lesson, one instrument, one repair at a time.</p>
@@ -627,106 +617,7 @@
     if (years > 0 && years < 200) el.textContent = String(years);
   });
 
-  /* ── HERO IMAGE TRAIL ──────────────────────────────────────────
-     Photos laid along the pointer's path. The mechanism that makes
-     it read as one ribbon: emit per unit of DISTANCE moved, not on
-     a timer. On a timer, spacing = speed x interval, so a flick
-     scatters and a slow drag piles up.                          */
-  (function () {
-    var hero = document.querySelector('.home-hero');
-    if (!hero) return;
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    var SRC = [
-      'assets/photos/hollowbody.jpg',
-      'assets/photos/shop-wall.jpg',
-      'assets/photos/branded-leather.jpg',
-      'assets/photos/storefront.jpg',
-      'assets/photos/window-sign.jpg'
-    ];
-    var STEP = 118;      // px between spawns along the path
-    var POOL = 10;       // recycled <img> elements
-    var LIFE = 900;      // ms
-    var MAX_PER_FRAME = 6;
-
-    var layer = document.createElement('div');
-    layer.className = 'trail-layer';
-    layer.setAttribute('aria-hidden', 'true');   // decorative; adds no information
-    hero.appendChild(layer);
-
-    var pool = [], i;
-    for (i = 0; i < POOL; i++) {
-      var img = document.createElement('img');
-      img.className = 'trail-img';
-      img.src = SRC[i % SRC.length];
-      img.alt = '';
-      img.decoding = 'async';
-      layer.appendChild(img);
-      pool.push({ el: img, born: -1e9, x: 0, y: 0, rot: 0, scale: 1 });
-    }
-
-    var head = 0, acc = 0, lx = null, ly = null, srcAt = 0;
-    var running = false, raf = 0;
-
-    function spawn(x, y, ang) {
-      var slot = pool[head];            // take the slot BEFORE advancing,
-      head = (head + 1) % POOL;         // or every image lands one step behind
-      slot.el.src = SRC[srcAt % SRC.length];
-      srcAt++;
-      slot.x = x; slot.y = y;
-      slot.rot = ang + (Math.random() * 16 - 8);
-      slot.scale = 0.92 + Math.random() * 0.16;
-      slot.born = performance.now();
-    }
-
-    function onMove(e) {
-      var r = hero.getBoundingClientRect();
-      var x = e.clientX - r.left, y = e.clientY - r.top;
-      if (x < 0 || y < 0 || x > r.width || y > r.height) { lx = ly = null; return; }
-      if (lx === null) { lx = x; ly = y; return; }
-
-      var dx = x - lx, dy = y - ly;
-      var moved = Math.sqrt(dx * dx + dy * dy);
-      acc += moved;
-      var ang = Math.atan2(dy, dx) * 180 / Math.PI * 0.12;   // lean into travel
-
-      var guard = 0;
-      while (acc >= STEP && guard < MAX_PER_FRAME) {         // cap: a tab
-        acc -= STEP; guard++;                                // restore can hand
-        // place each where it is owed along the segment, not all at the end
-        var t = moved > 1e-6 ? Math.min(1, guard * STEP / moved) : 0;
-        spawn(lx + dx * t, ly + dy * t, ang);
-      }
-      if (guard >= MAX_PER_FRAME) acc = 0;                   // …one huge `moved`
-      lx = x; ly = y;
-      if (!running) { running = true; raf = requestAnimationFrame(tick); }
-    }
-
-    function tick(now) {
-      var alive = 0;
-      for (var k = 0; k < POOL; k++) {
-        var p = pool[k];
-        var u = (now - p.born) / LIFE;
-        if (u >= 1) { if (p.el.style.opacity !== '0') p.el.style.opacity = '0'; continue; }
-        alive++;
-        var fadeIn = Math.min(1, u / 0.12);
-        var fadeOut = u < 0.35 ? 1 : 1 - (u - 0.35) / 0.65;
-        p.el.style.opacity = (fadeIn * fadeOut * 0.92).toFixed(3);
-        p.el.style.transform =
-          'translate3d(' + (p.x - 66) + 'px,' + (p.y - 82) + 'px,0) rotate(' +
-          p.rot + 'deg) scale(' + (p.scale * (1 + u * 0.06)).toFixed(3) + ')';
-      }
-      if (alive > 0 && !document.hidden) { raf = requestAnimationFrame(tick); }
-      else { running = false; }
-    }
-
-    hero.addEventListener('pointermove', onMove, { passive: true });
-    hero.addEventListener('pointerleave', function () { lx = ly = null; acc = 0; });
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) { cancelAnimationFrame(raf); running = false; }
-    });
-  })();
+  
 
   /* ── ABOUT: layered photo depth ────────────────────────────────
      Two photographs on separate Z planes. Scroll drifts them apart;

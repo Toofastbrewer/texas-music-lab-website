@@ -977,69 +977,83 @@ html.js .fu:nth-child(6) { transition-delay: .5s; }
 }
 
 /* ── HOME HERO ─────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════
+   HOME HERO — three panels of the shop behind a centred lockup.
+   ══════════════════════════════════════════════════════════════ */
 .home-hero {
-  padding-top: var(--nav-h);
+  position: relative;
   min-height: 100vh;
   min-height: 100dvh;
-  background: var(--off-white);
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-.hero-split {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-  padding: 80px 0;
-  width: 100%;
+  place-items: center;
+  overflow: hidden;
+  padding: calc(var(--nav-h) + 48px) 20px 64px;
 }
-.hero-text { max-width: 580px; }
-.hero-text h1 { margin-bottom: 20px; }
-.hero-text .lead { font-size: 1.08rem; margin-bottom: 34px; }
-.hero-btns { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 40px; }
-.hero-phone {
-  font-size: .92rem;
+.hero-strip {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;                 /* the ground shows through as a seam */
+  background: var(--dark);
+}
+.hs-panel { overflow: hidden; }
+.hs-panel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Legibility comes from this scrim, not from choosing dark photographs -
+   which frees the panels to be picked for how they sit together. */
+.home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 58% 50% at 50% 50%,
+      rgba(10, 9, 18, .82), rgba(10, 9, 18, .40) 66%, rgba(10, 9, 18, .34)),
+    linear-gradient(180deg,
+      rgba(10, 9, 18, .52), rgba(10, 9, 18, .20) 38%, rgba(10, 9, 18, .62));
+}
+
+.hero-inner { position: relative; z-index: 2; text-align: center; max-width: 940px; }
+.hero-title { margin: 0 0 20px; }
+.hero-title img {
+  width: min(780px, 84vw);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  /* the file bakes in --text for the header; invert it for the dark hero */
+  filter: brightness(0) invert(1) drop-shadow(0 8px 30px rgba(0, 0, 0, .55));
+}
+.hero-tagline {
+  /* p inherits the serif prose face; the lockup wants the sans */
+  font-family: var(--font);
+  font-size: clamp(1rem, 2.1vw, 1.4rem);
   font-weight: 700;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: color .2s;
+  line-height: 1.45;
+  color: #fff;
+  margin: 0 0 30px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, .6);
 }
-.hero-phone:hover { color: var(--orange); }
-.hero-trust {
-  display: flex;
-  gap: 28px;
-  padding-top: 32px;
-  border-top: 1px solid var(--border);
+.hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+@media (max-width: 700px) {
+  /* three columns on a phone is a barcode - show the middle panel only */
+  .hero-strip { grid-template-columns: 1fr; }
+  .hs-panel:first-child, .hs-panel:last-child { display: none; }
 }
+.hero-phone {
+  display: inline-block;
+  margin-top: 26px;
+  color: rgba(255, 255, 255, .88);
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .55);
+  transition: color .2s var(--ease-out);
+}
+.hero-phone:hover { color: #fff; }
 .trust-item { display: flex; align-items: center; gap: 8px; font-size: .85rem; color: var(--body); font-weight: 600; }
 .trust-icon { font-size: 1.1rem; }
 
-.hero-img-wrap {
-  position: relative;
-}
-.hero-img-main {
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  aspect-ratio: 4/5;
-  box-shadow: var(--sh-xl);
-}
-.hero-img-main img { width: 100%; height: 100%; object-fit: cover; }
-.hero-img-badge {
-  position: absolute;
-  bottom: 28px;
-  left: -24px;
-  background: var(--white);
-  border-radius: var(--r);
-  padding: 16px 20px;
-  box-shadow: var(--sh-lg);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 200px;
-}
 .hib-icon {
   width: 44px; height: 44px;
   background: var(--orange-lt);
@@ -1070,9 +1084,6 @@ html.js .fu:nth-child(6) { transition-delay: .5s; }
   .sec2        { padding: 40px 0; }
   .sec-hd      { margin-bottom: 36px; }
   .stats-bar   { padding: 36px 0; }
-  .hero-split  { grid-template-columns: 1fr; gap: 32px; padding: 16px 0 0; }
-  .hero-img-wrap { display: none; }
-  .hero-text   { max-width: 100%; }
   .split       { grid-template-columns: 1fr; gap: 32px; }
   .split.rev   { direction: ltr; }
   .page-hero-inner { grid-template-columns: 1fr; }
@@ -1095,7 +1106,6 @@ html.js .fu:nth-child(6) { transition-delay: .5s; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .sec         { padding: 48px 0; }
   .sec2        { padding: 32px 0; }
-  .hero-trust  { flex-direction: column; gap: 14px; }
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -1621,47 +1631,6 @@ ol.timeline { list-style: none; padding: 0; margin: 0 auto; }
 /* Reduced motion: keep colour feedback, drop the movement. */
 @media (prefers-reduced-motion: reduce) {
   .btn:active, .filter-btn:active, .soc-btn:active { transform: none; }
-}
-
-/* ══════════════════════════════════════════════════════════════
-   HERO IMAGE TRAIL — photos laid along the pointer path.
-   Emission is per unit of DISTANCE travelled, not on a timer, so a
-   flick and a slow drag lay the same evenly-spaced ribbon. Desktop
-   pointers only; disabled entirely under reduced motion.
-   ══════════════════════════════════════════════════════════════ */
-.home-hero { position: relative; }
-
-.trail-layer {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;   /* never intercepts the hero's buttons */
-  z-index: 3;
-}
-.trail-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 132px;
-  height: 165px;
-  object-fit: cover;
-  border-radius: 10px;
-  opacity: 0;
-  box-shadow: 0 14px 38px rgba(20, 19, 32, .28);
-  will-change: transform, opacity;
-}
-
-@media (max-width: 900px) {
-  .trail-img { width: 96px; height: 120px; }
-}
-
-/* No pointer to follow on touch, and no still frame worth compositing
-   over a hero that is already complete without it. */
-@media (hover: none), (pointer: coarse) {
-  .trail-layer { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .trail-layer { display: none; }
 }
 
 /* ══════════════════════════════════════════════════════════════
