@@ -491,7 +491,31 @@ h4 { font-size: 1rem; font-weight: 700; }
   margin: 0 auto 16px;
   color: var(--orange);     /* the icons stroke in currentColor */
 }
-.hd-icon { width: 31px; height: 31px; display: block; }
+/* Icons inherit their context's font-size. These land in 14 different
+   wrappers - buttons, contact rows, category tiles, star ratings - so a
+   fixed px size would need one rule per wrapper. */
+/* An emoji glyph draws about 1.2x its font-size, so a 1:1 em swap
+   under-draws. These bumps restore the visual weight the emoji had, and
+   the small-text contexts also need a heavier stroke - 1.7 on a 24 viewBox
+   lands under a pixel once the icon is only 13px wide. */
+.hd-icon { width: 1.2em; height: 1.2em; display: inline-block;
+           vertical-align: -.24em; flex: none; }
+.why-icon .hd-icon, .cat-icon .hd-icon, .dl-cover .hd-icon,
+.val-icon .hd-icon, .fs-icon .hd-icon, .map-pin-lg .hd-icon
+        { display: block; vertical-align: 0; margin: 0 auto; }
+.why-icon .hd-icon   { width: 31px; height: 31px; }
+.map-pin-lg .hd-icon { width: 34px; height: 34px; }
+.test-stars          { display: inline-flex; gap: 2px; align-items: center; }
+.test-stars .hd-icon { width: 1.05em; height: 1.05em; vertical-align: 0; }
+.feat-check .hd-icon { width: 1.4em; height: 1.4em; stroke-width: 2.1; }
+.btn .hd-icon        { margin-right: .15em; }
+.ci-icon .hd-icon    { width: 1.55em; height: 1.55em; color: var(--orange); }
+.cat-icon .hd-icon   { width: 1.5em;  height: 1.5em;  color: var(--orange); }
+.dl-cover .hd-icon   { width: 1.45em; height: 1.45em; }
+.story-stat .hd-icon { width: 1.45em; height: 1.45em; stroke-width: 2; }
+.ev-when .hd-icon    { width: 1.35em; height: 1.35em; stroke-width: 2; }
+.mob-sub .hd-icon    { width: 1.3em;  height: 1.3em;  stroke-width: 1.9; }
+.map-pin-lg .hd-icon { width: 34px;   height: 34px; }
 .why-title { font-size: 1rem; color: var(--text); margin-bottom: 8px; }
 .why-desc  { font-size: .85rem; color: var(--body); line-height: 1.67; }
 

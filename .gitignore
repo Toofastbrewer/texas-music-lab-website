@@ -8,3 +8,5 @@ _*.html
 
 # tooling cache
 .impeccable/
+__pycache__/
+*.pyc

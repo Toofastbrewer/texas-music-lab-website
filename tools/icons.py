@@ -137,11 +137,11 @@ ICONS.update({
   "M12 7.2v5l3.4 2",
 ],
 "handshake": [
-  "M3.6 11.3l3.2-3.2c.4-.4 1-.4 1.4 0l2.2 2.1c.5.5 1.3.5 1.8 0l.8-.8",
-  "M13.1 9.5l3.4 3.3c.6.6.6 1.5 0 2.1-.6.6-1.5.6-2.1 0",
-  "M14.4 14.9l1.6 1.6c.6.6.6 1.5 0 2.1-.6.6-1.5.6-2.1 0l-1.6-1.6",
-  "M12.3 17l-1 1c-.6.6-1.5.6-2.1 0l-4-4",
-  "M16.5 8.1l3.9 3.9",
+  # A handshake will not survive 24px - two attempts read as a scribble. The card
+  # this sits on says "Honest Always", so a shield-and-check carries the same
+  # meaning and stays legible at every size the icon is used at.
+  "M12 3.1l6.9 2.5v5.6c0 4.4-2.9 8.3-6.9 9.4-4.1-1.1-7-5-6.9-9.4V5.6z",
+  "M8.8 11.7c.9.6 1.6 1.4 2.2 2.3 1.2-1.9 2.7-3.5 4.4-4.8",
 ],
 "buildings": [
   "M3.6 20.5v-8.9l5.2-3.5 5.1 3.5v8.9",
@@ -173,11 +173,13 @@ ICONS.update({
 "bolt": [
   "M13.7 2.6L5.4 13.4h5.6l-1.3 8 8.6-11h-5.8z",
 ],
-"banjo": [
-  "M9.6 21.3c-3.2 0-5.8-2.6-5.8-5.8 0-3.2 2.6-5.7 5.8-5.7 3.2 0 5.7 2.6 5.7 5.8 0 3.1-2.6 5.7-5.7 5.7",
-  "M9.6 13.3c1.3 0 2.4 1.1 2.4 2.4 0 1.3-1.1 2.4-2.4 2.4-1.3 0-2.4-1.1-2.4-2.4 0-1.3 1.1-2.4 2.4-2.4",
-  "M13.8 11.4l6.4-6.5",
-  "M18.9 3.6l1.9 1.9",
+"ukulele": [
+  # Rounder and shorter than the guitar, with four tuning pegs - that peg count
+  # is the only thing that separates a uke from a guitar at 26px.
+  "M12 21.2c-2.4.1-4.4-1.9-4.4-4.2 0-1.4.7-2.6 1.9-3.4-.6-.5-1-1.2-1-2 0-1.5 1.6-2.7 3.5-2.7 1.9 0 3.5 1.2 3.5 2.7 0 .8-.4 1.5-1 2 1.1.8 1.8 2 1.8 3.4 0 2.3-2 4.3-4.3 4.2",
+  "M12 15.6c.7 0 1.3.6 1.3 1.4 0 .7-.6 1.3-1.4 1.3-.7 0-1.3-.6-1.2-1.4 0-.7.6-1.3 1.3-1.3",
+  "M12 8.9V3.2",
+  "M10.7 4.3h-1M10.7 6h-1M13.3 4.3h1M13.3 6h1",
 ],
 "speaker": [
   "M4.6 9.5h3.1l4.6-3.8c.5-.4 1.2 0 1.2.6v11.4c0 .6-.7 1-1.2.6l-4.6-3.8H4.6c-.6 0-1-.5-1-1V10.5c0-.6.4-1 1-1",
@@ -205,7 +207,7 @@ ICONS.update({
 
 # a filled star, for the review ratings - an outline reads as "empty" there
 ICONS["star-fill"] = ICONS["star"]
-FILLED = {"star-fill", "bolt", "pin"}
+FILLED = {"star-fill", "bolt"}
 
 EMOJI2 = {
   "✓": "check", "✔": "check", "✅": "check",
@@ -216,7 +218,7 @@ EMOJI2 = {
   "🕕": "clock", "🕖": "clock", "🕛": "clock",
   "🤝": "handshake", "🏘": "buildings", "🚶": "walking",
   "📝": "pencil", "📄": "document", "⚡": "bolt",
-  "🪕": "banjo", "🔊": "speaker", "🎛": "sliders",
+  "🪕": "ukulele", "🔊": "speaker", "🎛": "sliders",
   "🏆": "trophy",
   "👨": "person", "👩": "person", "👧": "person",
   "⭐": "star", "★": "star-fill",
