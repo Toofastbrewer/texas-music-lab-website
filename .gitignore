@@ -10,3 +10,4 @@ _*.html
 .impeccable/
 __pycache__/
 *.pyc
+generations/
