@@ -18,7 +18,17 @@
   <link rel="stylesheet" href="style.css">
   <style>
     /* 5-card layout: 3 top, 2 bottom centered */
+    .stats-grid  { grid-template-columns: repeat(3, 1fr); }
     .inst-grid-5 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    /* No instructors on staff right now - the slots stay so the page keeps
+       its shape and a real profile drops straight in. */
+    .inst-card-empty { border-style: dashed; background: var(--off-white); }
+    .inst-card-empty:hover { transform: none; box-shadow: none; }
+    .inst-photo-empty { display: grid; place-items: center; color: var(--border); }
+    .inst-photo-empty .hd-icon { width: 56px; height: 56px; }
+    .inst-slot-line { display: block; height: 12px; width: 62%; border-radius: 6px;
+                      background: var(--border); opacity: .55; }
+    .inst-slot-line + .inst-slot-line { margin-top: 11px; width: 38%; height: 9px; }
     .inst-row-2  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 820px; margin: 24px auto 0; }
     @media (max-width: 800px) {
       .inst-grid-5, .inst-row-2 { grid-template-columns: 1fr 1fr; max-width: 100%; }
@@ -186,7 +196,7 @@
       </nav>
       <div class="tag">Our Team</div>
       <h1 data-word-reveal>Meet Your<br>Instructors</h1>
-      <p class="lead">Each one a working musician. Each one a dedicated teacher. We'll match you with the instructor who fits your goals and your style.</p>
+      <p class="lead">Instructor profiles are being updated. Get in touch and we'll tell you what lessons are available right now.</p>
       <a href="contact.html" class="btn btn-orange" style="margin-top:24px;">Book a Lesson →</a>
     </div>
     <div class="page-hero-img">
@@ -198,9 +208,9 @@
 <!-- ░░ INTRO ░░ -->
 <section class="sec2 sec-alt" style="text-align:center;">
   <div class="wrap" style="max-width:700px;">
-    <div class="tag">5 Instructors. Dozens of Styles.</div>
+    <div class="tag">Our Teaching Team</div>
     <h2 style="margin-bottom:14px;">The Right Teacher Changes Everything</h2>
-    <p class="lead" style="margin:0 auto;">From jazz and classical to rock, folk, flamenco, and beyond — our team covers every genre and every skill level. We never guess: we listen to your goals and match you intentionally.</p>
+    <p class="lead" style="margin:0 auto;">We're building the teaching roster back up. Tell us what you want to play and we'll let you know as soon as we can match you.</p>
   </div>
 </section>
 
@@ -208,104 +218,36 @@
 <section class="sec">
   <div class="wrap">
 
-    <!-- Row 1: Freddy, Houston, Scott -->
     <div class="inst-grid-5">
-
-      <div class="inst-card fu">
-        <div class="inst-photo">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80" alt="Freddy Ezeala, Lead Instructor" />
-          <div class="inst-chips">
-            <span class="chip">Jazz Guitar</span>
-            <span class="chip">Music Theory</span>
+        <div class="inst-card inst-card-empty">
+          <div class="inst-photo inst-photo-empty"><svg class="hd-icon" data-icon="person" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.9c1.9 0 3.4 1.6 3.4 3.5 0 1.9-1.6 3.4-3.5 3.4-1.9 0-3.4-1.6-3.4-3.5 0-1.9 1.6-3.4 3.5-3.4"/><path d="M4.6 20.4c.2-3.9 3.4-7 7.4-7 3.9 0 7.1 3.1 7.4 7"/></svg></div>
+          <div class="inst-body">
+            <span class="inst-slot-line"></span>
+            <span class="inst-slot-line"></span>
           </div>
         </div>
-        <div class="inst-body">
-          <div class="inst-name">Freddy Ezeala</div>
-          <div class="inst-role">Lead Instructor</div>
-          <p class="inst-bio">Freddy brings deep jazz vocabulary and music theory expertise to every lesson. Whether you're exploring jazz harmony for the first time or working through advanced chord voicings, Freddy guides with patience and precision. Ideal for students who want to understand not just how to play, but why it works.</p>
-          <a href="contact.html" class="link-arr">Book with Freddy</a>
-        </div>
-      </div>
-
-      <div class="inst-card fu">
-        <div class="inst-photo">
-          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=500&q=80" alt="Houston Rehmet, Instructor" />
-          <div class="inst-chips">
-            <span class="chip">Electric Guitar</span>
-            <span class="chip">Ukulele</span>
+        <div class="inst-card inst-card-empty">
+          <div class="inst-photo inst-photo-empty"><svg class="hd-icon" data-icon="person" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.9c1.9 0 3.4 1.6 3.4 3.5 0 1.9-1.6 3.4-3.5 3.4-1.9 0-3.4-1.6-3.4-3.5 0-1.9 1.6-3.4 3.5-3.4"/><path d="M4.6 20.4c.2-3.9 3.4-7 7.4-7 3.9 0 7.1 3.1 7.4 7"/></svg></div>
+          <div class="inst-body">
+            <span class="inst-slot-line"></span>
+            <span class="inst-slot-line"></span>
           </div>
         </div>
-        <div class="inst-body">
-          <div class="inst-name">Houston Rehmet</div>
-          <div class="inst-role">Instructor</div>
-          <p class="inst-bio">Houston teaches both electric guitar and ukulele, making him one of our most versatile instructors. Energetic and encouraging, he's especially great with students who want to play their favorite songs as quickly as possible. His upbeat teaching style keeps students engaged and coming back.</p>
-          <a href="contact.html" class="link-arr">Book with Houston</a>
-        </div>
-      </div>
-
-      <div class="inst-card fu">
-        <div class="inst-photo">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Scott Montgomery, Instructor" />
-          <div class="inst-chips">
-            <span class="chip">Guitar</span>
+        <div class="inst-card inst-card-empty">
+          <div class="inst-photo inst-photo-empty"><svg class="hd-icon" data-icon="person" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.9c1.9 0 3.4 1.6 3.4 3.5 0 1.9-1.6 3.4-3.5 3.4-1.9 0-3.4-1.6-3.4-3.5 0-1.9 1.6-3.4 3.5-3.4"/><path d="M4.6 20.4c.2-3.9 3.4-7 7.4-7 3.9 0 7.1 3.1 7.4 7"/></svg></div>
+          <div class="inst-body">
+            <span class="inst-slot-line"></span>
+            <span class="inst-slot-line"></span>
           </div>
         </div>
-        <div class="inst-body">
-          <div class="inst-name">Scott Montgomery</div>
-          <div class="inst-role">Instructor</div>
-          <p class="inst-bio">Scott's straightforward, no-nonsense approach resonates with students who want to get right to playing. His focus on strong fundamentals ensures every student builds a foundation they'll rely on for life. A great fit for self-motivated learners of any age who appreciate direct, clear instruction.</p>
-          <a href="contact.html" class="link-arr">Book with Scott</a>
-        </div>
       </div>
-
-    </div>
-
-    <!-- Row 2: Cade, Ryan -->
-    <div class="inst-row-2">
-
-      <div class="inst-card fu">
-        <div class="inst-photo">
-          <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=500&q=80" alt="Cade Meaderis, Instructor" />
-          <div class="inst-chips">
-            <span class="chip">Bass</span>
-            <span class="chip">Upright Bass</span>
-            <span class="chip">Jazz Theory</span>
-          </div>
-        </div>
-        <div class="inst-body">
-          <div class="inst-name">Cade Meaderis</div>
-          <div class="inst-role">Instructor</div>
-          <p class="inst-bio">One of the very few instructors in the Plano area who teaches both electric bass and upright bass alongside jazz theory. Cade is the go-to teacher for students serious about becoming complete, well-rounded musicians. He's equally at home teaching slap bass, walking bass lines, and classical upright technique.</p>
-          <a href="contact.html" class="link-arr">Book with Cade</a>
-        </div>
-      </div>
-
-      <div class="inst-card fu">
-        <div class="inst-photo">
-          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=500&q=80" alt="Ryan Hughes, Instructor" />
-          <div class="inst-chips">
-            <span class="chip">Acoustic Guitar</span>
-            <span class="chip">Classical</span>
-            <span class="chip">Flamenco</span>
-          </div>
-        </div>
-        <div class="inst-body">
-          <div class="inst-name">Ryan Hughes</div>
-          <div class="inst-role">Instructor · 10+ Years at TML</div>
-          <p class="inst-bio">Ryan covers it all — acoustic, electric, classical, and flamenco guitar across pop, rock, and folk styles. With over 10 years teaching at Texas Music Lab, he's one of our most trusted and beloved instructors. Outside the studio, Ryan is an avid cyclist, cook, and woodworker who brings the same patience and craft to his teaching.</p>
-          <a href="contact.html" class="link-arr">Book with Ryan</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+    </section>
 
 <!-- ░░ BOOKING STRIP ░░ -->
 <div class="book-strip">
   <div class="wrap">
-    <h2>Not Sure Who to Choose?</h2>
-    <p>Tell us your goals and we'll make the match. No guesswork — just the right instructor from day one.</p>
+    <h2>Want to Start Lessons?</h2>
+    <p>Tell us what you're hoping to learn and we'll be in touch about lessons.</p>
     <a href="contact.html" class="btn btn-orange btn-lg">Schedule Your First Lesson →</a>
   </div>
 </div>
@@ -314,53 +256,12 @@
 <div class="stats-bar">
   <div class="wrap">
     <div class="stats-grid">
-      <div class="fu"><span class="stat-n">5</span><div class="stat-l">Expert Instructors</div></div>
       <div class="fu"><span class="stat-n">6+</span><div class="stat-l">Instruments Taught</div></div>
       <div class="fu"><span class="stat-n" data-since="2007">19</span><div class="stat-l">Years of Teaching</div></div>
       <div class="fu"><span class="stat-n">All</span><div class="stat-l">Skill Levels Welcome</div></div>
     </div>
   </div>
 </div>
-
-<!-- ░░ TESTIMONIALS ░░ -->
-<section class="sec">
-  <div class="wrap">
-    <div class="sec-hd c">
-      <div class="tag">Student Stories</div>
-      <h2>Lessons That Make a Difference</h2>
-      <p class="lead">Don't just take our word for it.</p>
-    </div>
-    <div class="test-grid">
-      <div class="test-card fu">
-        <div class="test-quote-mark">"</div>
-        <div class="test-stars"><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg></div>
-        <p class="test-text">Ryan has been teaching my daughter for two years. The progress has been incredible — she went from not knowing a single chord to performing in front of an audience. He genuinely cares about every student.</p>
-        <div class="test-author">
-          <div class="test-av"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80" alt="Karen M." /></div>
-          <div><div class="test-name">Karen M.</div><div class="test-meta">Student parent · Plano, TX</div></div>
-        </div>
-      </div>
-      <div class="test-card fu">
-        <div class="test-quote-mark">"</div>
-        <div class="test-stars"><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg></div>
-        <p class="test-text">Freddy's jazz theory lessons completely changed how I hear music. I came in as a rock player who barely knew any theory, and within a year I was playing jazz standards and understanding why every note worked. Life-changing, honestly.</p>
-        <div class="test-author">
-          <div class="test-av"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Travis R." /></div>
-          <div><div class="test-name">Travis R.</div><div class="test-meta">Jazz lessons · Frisco, TX</div></div>
-        </div>
-      </div>
-      <div class="test-card fu">
-        <div class="test-quote-mark">"</div>
-        <div class="test-stars"><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg><svg class="hd-icon" data-icon="star-fill" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.6l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9-5.3-2.9-5.2 2.8 1-5.8-4.3-4.2 5.9-.8z"/></svg></div>
-        <p class="test-text">Houston is fantastic with my son — he's 9 and Houston keeps him laughing and learning at the same time. He learned three full songs in his first month. Worth every penny and then some.</p>
-        <div class="test-author">
-          <div class="test-av"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=100&q=80" alt="Lisa W." /></div>
-          <div><div class="test-name">Lisa W.</div><div class="test-meta">Student parent · McKinney, TX</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ░░ CTA ░░ -->
 <div class="cta-sec">
