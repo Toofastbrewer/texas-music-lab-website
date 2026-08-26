@@ -193,12 +193,7 @@
             <img src="assets/photos/guitar.webp" width="537" height="918"
                  alt="A cherry sunburst semi-hollow electric guitar with gold hardware">
           </div>
-          <!-- Behind it, the real shop. The instrument carries the picture;
-               the photograph is what makes the claim true. -->
-          <div class="g3d-card g3d-back" data-depth="-38" data-drift="28">
-            <img src="assets/photos/storefront.jpg" alt="A blue electric guitar on a stand outside the Texas Music Lab storefront, beside a blue Mustang">
-          </div>
-        </div>
+</div>
         <div class="img-badge">
           <span class="badge-num">Plano</span>
           <span class="badge-lbl">Texas · Est. 2007</span>
@@ -591,7 +586,7 @@
     var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (still) return;                       /* CSS already renders it square-on */
 
-    var cards = [].slice.call(stage.querySelectorAll('.g3d-card, .g3d-float'));
+    var cards = [].slice.call(stage.querySelectorAll('.g3d-float'));
     var tx = 0, ty = 0, cx = 0, cy = 0;      /* target vs current tilt */
     var drift = 0, raf = 0, running = false;
 
