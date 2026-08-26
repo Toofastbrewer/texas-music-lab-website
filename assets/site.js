@@ -106,14 +106,14 @@
   var btn   = document.getElementById("cartBtn");
   var count = document.getElementById("cartCount");
   var tray  = document.getElementById("cartTray");
-  var label = document.getElementById("cartLabel");
 
   function paint() {
     var list = read();
-    /* the badge always shows, zero included - matching the reference - so it
-       never relies on [hidden], which a `display` rule would out-specify */
+    /* the badge always shows, zero included, and carries the count on its own
+       now the text label is gone - so it never relies on [hidden], which a
+       `display` rule would out-specify. The button's aria-label still
+       announces the count, so nothing is lost for a screen reader. */
     if (count) count.textContent = String(list.length);
-    if (label) label.textContent = list.length + (list.length === 1 ? " item" : " items");
     if (btn) btn.setAttribute("aria-label",
       list.length ? "Enquiry list, " + list.length + " item" + (list.length === 1 ? "" : "s")
                   : "Enquiry list, empty");

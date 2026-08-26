@@ -1849,13 +1849,6 @@ p, blockquote {
   padding: 0 5px;
 }
 .cart-count[hidden] { display: none; }   /* a display rule out-specifies [hidden] */
-.cart-label {
-  font-size: .82rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: .2px;
-  white-space: nowrap;
-}
 .cart-tray {
   position: absolute;
   top: calc(100% + 10px); right: 0;
@@ -1900,11 +1893,6 @@ p, blockquote {
   .nav-bar { display: none; }
   .site-search { display: none; }
   .nav-top { padding: 10px 0; }
-  /* The wordmark reads TEXAS MUSIC LAB now, which is wide enough that the
-     logo plus the cart plus its label plus the hamburger overran 390px and
-     pushed the hamburger off-screen - i.e. no navigation at all on a phone.
-     The label is the least load-bearing of those, so it goes first. */
-  .cart-label { display: none; }
 }
 
 @media (max-width: 560px) {
