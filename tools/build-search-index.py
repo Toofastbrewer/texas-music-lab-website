@@ -14,7 +14,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 PAGES = {
     "index.html": "Home", "services.html": "Services", "instructors.html": "Instructors",
     "about.html": "About Us", "contact.html": "Contact", "process.html": "How It Works",
-    "shop.html": "The Shop", "student-stories.html": "Student Stories",
+    "shop.html": "The Shop",
     "resources.html": "Resources", "events.html": "Events", "privacy.html": "Privacy Policy",
 }
 
